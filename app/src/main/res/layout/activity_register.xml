@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:fitsSystemWindows="true"
+    android:background="@color/colorPrimaryDark">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="56dp"
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp">
+
+        <RelativeLayout
+            android:id="@+id/RelativeLayout01"
+            android:layout_width="fill_parent"
+            android:layout_height="130dp">
+
+            <ImageView
+                android:layout_width="121dp"
+                android:layout_height="82dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginStart="85dp"
+                android:layout_marginLeft="85dp"
+                app:srcCompat="@drawable/ic_doctor" />
+
+            <ImageView
+                android:layout_width="143dp"
+                android:layout_height="98dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginEnd="70dp"
+                android:layout_marginRight="70dp"
+                app:srcCompat="@drawable/ic_patient" />
+        </RelativeLayout>
+        <!-- Email Label -->
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/welcomeregister"
+            android:textSize="30dp"
+            android:textAlignment="center">
+        </TextView>
+
+        <EditText
+            android:id="@+id/nameTxt"
+            android:layout_width="match_parent"
+            android:layout_height="69dp"
+            android:hint="@string/hintname"
+            android:textSize="20dp">
+        </EditText>
+
+        <EditText
+            android:id="@+id/surnameTxt"
+            android:layout_width="match_parent"
+            android:layout_height="69dp"
+            android:hint="@string/hintsurname"
+            android:textSize="20dp">
+        </EditText>
+
+        <EditText
+            android:id="@+id/emailTxt"
+            android:layout_width="match_parent"
+            android:layout_height="69dp"
+            android:hint="@string/hintemail"
+            android:textSize="20dp">
+        </EditText>
+        <EditText
+            android:id="@+id/passwordTxt"
+            android:layout_width="match_parent"
+            android:layout_height="69dp"
+            android:hint="@string/hintpassword"
+            android:textSize="20dp">
+        </EditText>
+
+        <EditText
+            android:id="@+id/numberTxt"
+            android:layout_width="match_parent"
+            android:layout_height="69dp"
+            android:hint="@string/hintnumber"
+            android:textSize="20dp">
+        </EditText>
+
+        <Button
+            android:id="@+id/registerBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/register"
+            android:textAlignment="center"
+            android:textSize="20dp">
+        </Button>
+
+    </LinearLayout>
+</ScrollView>

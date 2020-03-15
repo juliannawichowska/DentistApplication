@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">DentistApplication</string>
+    <string name="welcome">Witaj w aplikacji!</string>
+    <string name="welcomeregister">Wprowadź dane aby założyć konto w aplikacji</string>
+    <string name="email">Email</string>
+    <string name="hintemail">Wprowadź adres e-mail</string>
+    <string name="hintpassword">Wprowadź hasło</string>
+    <string name="hintname">Wprowadź imię</string>
+    <string name="hintsurname">Wprowadź nazwisko</string>
+    <string name="hintnumber">Podaj numer telefonu</string>
+    <string name="login">Zaloguj się</string>
+    <string name="account">Nie masz konta?</string>
+    <string name="register">Zarejestruj się!</string>
+    <string name="logout">Wyloguj się</string>
+
+
 </resources>
