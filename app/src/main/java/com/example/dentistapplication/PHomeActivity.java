@@ -10,17 +10,13 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
-public class HomeActivity extends AppCompatActivity {
-
-    FirebaseAuth mAuth;
+public class PHomeActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
-
+        setContentView(R.layout.activity_phome);
     }
 
     @Override
@@ -35,11 +31,7 @@ public class HomeActivity extends AppCompatActivity {
         int id = item.getItemId();
         if (id==R.id.action_logout){
             FirebaseAuth.getInstance().signOut();
-
-                startActivity(new Intent(HomeActivity.this, LoginActivity.class));
-
-
-
+            startActivity(new Intent(PHomeActivity.this, LoginActivity.class));
         }
         return super.onOptionsItemSelected(item);
     }

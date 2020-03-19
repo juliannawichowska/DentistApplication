@@ -4,57 +4,71 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:fitsSystemWindows="true"
-    android:background="@color/colorPrimaryDark">
+    android:background="@drawable/back">
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="56dp"
+        android:paddingTop="30dp"
         android:paddingLeft="24dp"
         android:paddingRight="24dp">
 
-        <RelativeLayout
-            android:id="@+id/RelativeLayout01"
-            android:layout_width="fill_parent"
-            android:layout_height="130dp">
+        <ImageView
+            android:layout_width="359dp"
+            android:layout_height="119dp"
+            android:layout_gravity="center_horizontal"
+            android:contentDescription="@string/icon"
+            android:textAlignment="center"
+            app:srcCompat="@drawable/ic_doctors" />
 
-            <ImageView
-                android:layout_width="121dp"
-                android:layout_height="82dp"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentLeft="true"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginStart="85dp"
-                android:layout_marginLeft="85dp"
-                app:srcCompat="@drawable/ic_doctor" />
-
-            <ImageView
-                android:layout_width="143dp"
-                android:layout_height="98dp"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginEnd="70dp"
-                android:layout_marginRight="70dp"
-                app:srcCompat="@drawable/ic_patient" />
-        </RelativeLayout>
-        <!-- Email Label -->
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="@string/welcomeregister"
-            android:textSize="30dp"
+            android:textSize="30sp"
+            android:textColor="#FFFFFF"
             android:textAlignment="center">
         </TextView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/chooseType"
+            android:textSize="15sp"
+            android:layout_marginTop="10dp"
+            android:textColor="#FFFFFF"
+            android:textAlignment="center">
+        </TextView>
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <RadioButton android:id="@+id/radio_patient"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/patientType"
+                android:textColor="#FFFFEE"
+                android:onClick="onRadioButtonClicked"/>
+            <RadioButton android:id="@+id/radio_doctor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/doctorType"
+                android:textColor="#FFFFEE"
+                android:onClick="onRadioButtonClicked"/>
+        </RadioGroup>
 
         <EditText
             android:id="@+id/nameTxt"
             android:layout_width="match_parent"
             android:layout_height="69dp"
             android:hint="@string/hintname"
-            android:textSize="20dp">
+            android:textColor="#FFFFEE"
+            android:textColorHint="#FFFFEE"
+            android:textSize="20sp"
+            android:inputType="textPersonName">
         </EditText>
 
         <EditText
@@ -62,7 +76,10 @@
             android:layout_width="match_parent"
             android:layout_height="69dp"
             android:hint="@string/hintsurname"
-            android:textSize="20dp">
+            android:textColor="#FFFFEE"
+            android:textColorHint="#FFFFEE"
+            android:inputType="textPersonName"
+            android:textSize="20sp">
         </EditText>
 
         <EditText
@@ -70,14 +87,20 @@
             android:layout_width="match_parent"
             android:layout_height="69dp"
             android:hint="@string/hintemail"
-            android:textSize="20dp">
+            android:textColor="#FFFFEE"
+            android:textColorHint="#FFFFEE"
+            android:inputType="textEmailAddress"
+            android:textSize="20sp">
         </EditText>
         <EditText
             android:id="@+id/passwordTxt"
             android:layout_width="match_parent"
             android:layout_height="69dp"
             android:hint="@string/hintpassword"
-            android:textSize="20dp">
+            android:textColor="#FFFFEE"
+            android:textColorHint="#FFFFEE"
+            android:inputType="textPassword"
+            android:textSize="20sp">
         </EditText>
 
         <EditText
@@ -85,7 +108,10 @@
             android:layout_width="match_parent"
             android:layout_height="69dp"
             android:hint="@string/hintnumber"
-            android:textSize="20dp">
+            android:textColorHint="#FFFFEE"
+            android:textColor="#FFFFEE"
+            android:inputType="number"
+            android:textSize="20sp">
         </EditText>
 
         <Button
@@ -95,7 +121,8 @@
             android:layout_marginTop="10dp"
             android:text="@string/register"
             android:textAlignment="center"
-            android:textSize="20dp">
+            android:textSize="20sp"
+            android:layout_marginBottom="10dp">
         </Button>
 
     </LinearLayout>
