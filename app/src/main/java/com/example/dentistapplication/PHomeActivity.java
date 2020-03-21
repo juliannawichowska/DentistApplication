@@ -11,6 +11,8 @@ import android.view.MenuItem;
 
 import com.google.firebase.auth.FirebaseAuth;
 
+import static com.example.dentistapplication.R.menu.right_menu;
+
 public class PHomeActivity extends AppCompatActivity {
 
     @Override
@@ -22,7 +24,7 @@ public class PHomeActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.right_menu, menu);
+        inflater.inflate(right_menu, menu);
         return true;
     }
 
