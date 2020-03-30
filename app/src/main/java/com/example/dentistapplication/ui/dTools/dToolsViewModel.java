@@ -1,16 +1,16 @@
-package com.example.dentistapplication.ui.home;
+package com.example.dentistapplication.ui.dTools;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class HomeViewModel extends ViewModel {
+public class dToolsViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public HomeViewModel() {
+    public dToolsViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("Tutaj będzie główny ekran aplikacji, informacja o tym o jakiej godzinie są najbliższe wizyty i kim są pacjenci");
+        mText.setValue("Tutaj będą ewentualne ustawienia, na ten moment nie są zadeklarowane");
     }
 
     public LiveData<String> getText() {

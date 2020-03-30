@@ -3,6 +3,8 @@
     package="com.example.dentistapplication">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <application
         android:icon="@mipmap/ic_launcher"
@@ -11,10 +13,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".DHomeActivity"
+            android:name=".dHomeActivity"
             android:label="DHomeActivity"
             android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".PHomeActivity" />
+        <activity android:name=".pHomeActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".LoginActivity">
             <intent-filter>

@@ -7,26 +7,26 @@
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.example.dentistapplication.ui.home.HomeFragment"
+        android:name="com.example.dentistapplication.ui.dHome.dHomeFragment"
         android:label="Pulpit"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/d_fragment_home" />
 
     <fragment
         android:id="@+id/nav_profile"
-        android:name="com.example.dentistapplication.ui.profile.ProfileFragment"
+        android:name="com.example.dentistapplication.ui.dProfile.dProfileFragment"
         android:label="Twój profil"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/d_fragment_profile" />
 
     <fragment
         android:id="@+id/nav_calendar"
-        android:name="com.example.dentistapplication.ui.calendar.CalendarFragment"
+        android:name="com.example.dentistapplication.ui.dCalendar.dCalendarFragment"
         android:label="Kalendarz wizyt"
-        tools:layout="@layout/fragment_calendar" />
+        tools:layout="@layout/d_fragment_calendar" />
 
     <fragment
         android:id="@+id/nav_tools"
-        android:name="com.example.dentistapplication.ui.tools.ToolsFragment"
+        android:name="com.example.dentistapplication.ui.dTools.dToolsFragment"
         android:label="Ustawienia"
-        tools:layout="@layout/fragment_tools" />
+        tools:layout="@layout/d_fragment_tools" />
 
 </navigation>

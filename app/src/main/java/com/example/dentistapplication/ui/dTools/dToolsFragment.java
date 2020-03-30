@@ -1,4 +1,4 @@
-package com.example.dentistapplication.ui.home;
+package com.example.dentistapplication.ui.dTools;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,17 +14,17 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.example.dentistapplication.R;
 
-public class HomeFragment extends Fragment {
+public class dToolsFragment extends Fragment {
 
-    private HomeViewModel homeViewModel;
+    private dToolsViewModel dToolsViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        homeViewModel =
-                ViewModelProviders.of(this).get(HomeViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_home, container, false);
-        final TextView textView = root.findViewById(R.id.text_home);
-        homeViewModel.getText().observe(this, new Observer<String>() {
+        dToolsViewModel =
+                ViewModelProviders.of(this).get(dToolsViewModel.class);
+        View root = inflater.inflate(R.layout.d_fragment_tools, container, false);
+        final TextView textView = root.findViewById(R.id.text_tools);
+        dToolsViewModel.getText().observe(this, new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);

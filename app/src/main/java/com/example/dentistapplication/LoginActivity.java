@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -61,13 +60,16 @@ public class LoginActivity extends AppCompatActivity {
                             String userType1 = dataSnapshot.getValue(String.class);
                             System.out.println(userType1);
                             assert userType1 != null;
+                            if(userType1 == null) {
+                                userType1 = "empty string";
+                            }else {
                             if(userType1.equals("patient")){
-                                Intent pHome = new Intent(LoginActivity.this,PHomeActivity.class);
+                                Intent pHome = new Intent(LoginActivity.this, pHomeActivity.class);
                                 startActivity(pHome);
                             }else{
-                                Intent dHome = new Intent(LoginActivity.this,DHomeActivity.class);
+                                Intent dHome = new Intent(LoginActivity.this, dHomeActivity.class);
                                 startActivity(dHome);
-                            }
+                            }}
                         }
                         @Override
                         public void onCancelled(@NonNull DatabaseError databaseError) {
@@ -124,11 +126,11 @@ public class LoginActivity extends AppCompatActivity {
                                         System.out.println(userType2+"aa");
                                         assert userType2 != null;
                                         if(!userType2.equals("doctor")){
-                                            startActivity(new Intent(LoginActivity.this,PHomeActivity.class));
+                                            startActivity(new Intent(LoginActivity.this, pHomeActivity.class));
                                             finish();
                                             System.out.println("ajajaja");
                                         }else{
-                                            startActivity(new Intent(LoginActivity.this,DHomeActivity.class));
+                                            startActivity(new Intent(LoginActivity.this, dHomeActivity.class));
                                             finish();
                                         }
                                     }

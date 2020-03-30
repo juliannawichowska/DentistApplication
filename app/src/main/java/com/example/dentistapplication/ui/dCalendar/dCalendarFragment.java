@@ -1,4 +1,4 @@
-package com.example.dentistapplication.ui.calendar;
+package com.example.dentistapplication.ui.dCalendar;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,17 +14,17 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.example.dentistapplication.R;
 
-public class CalendarFragment extends Fragment {
+public class dCalendarFragment extends Fragment {
 
-    private CalendarViewModel calendarViewModel;
+    private dCalendarViewModel dCalendarViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        calendarViewModel =
-                ViewModelProviders.of(this).get(CalendarViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_calendar, container, false);
+        dCalendarViewModel =
+                ViewModelProviders.of(this).get(dCalendarViewModel.class);
+        View root = inflater.inflate(R.layout.d_fragment_calendar, container, false);
         final TextView textView = root.findViewById(R.id.text_calendar);
-        calendarViewModel.getText().observe(this, new Observer<String>() {
+        dCalendarViewModel.getText().observe(this, new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);

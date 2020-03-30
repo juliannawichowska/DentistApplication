@@ -25,5 +25,10 @@
 
     <string name="action_settings">Ustawienia</string>
 
+    <string name="descriptionHeader">Opis</string>
+    <string name="addressHeader">Adres gabinetu</string>
+    <string name="numberHeader">Numer telefonu</string>
+
+
 
 </resources>

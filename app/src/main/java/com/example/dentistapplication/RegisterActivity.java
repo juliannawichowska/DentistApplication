@@ -97,6 +97,10 @@ public class RegisterActivity extends AppCompatActivity {
                                 hashMap.put("surname", surname);
                                 hashMap.put("number", number);
                                 hashMap.put("userType", userType);
+                                hashMap.put("imageURL", "");
+                                hashMap.put("address", "");
+                                hashMap.put("description", "");
+
 
                                 //firebase database instance
                                 FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
@@ -113,7 +117,7 @@ public class RegisterActivity extends AppCompatActivity {
                                     reference2.child(uid).setValue(hashMap);
                                     //start patients app
                                     Toast.makeText(RegisterActivity.this, "Zalogowałeś się do aplikacji DentAPP jako pacjent danym mailem : " + email, Toast.LENGTH_LONG).show();
-                                    startActivity(new Intent(RegisterActivity.this,PHomeActivity.class));
+                                    startActivity(new Intent(RegisterActivity.this, pHomeActivity.class));
                                     finish();
                                 } else {
                                     //path to store data named "Doctors"
@@ -123,7 +127,7 @@ public class RegisterActivity extends AppCompatActivity {
                                     //start doctors app
                                     Toast.makeText(RegisterActivity.this, "Zalogowałeś się do aplikacji DentAPP jako doktor danym mailem : " + email, Toast.LENGTH_LONG).show();
                                     //go to results activity after logging in
-                                    startActivity(new Intent(RegisterActivity.this,DHomeActivity.class));
+                                    startActivity(new Intent(RegisterActivity.this, dHomeActivity.class));
                                     finish();
                                 }
 

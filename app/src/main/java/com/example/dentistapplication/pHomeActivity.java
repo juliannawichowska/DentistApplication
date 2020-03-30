@@ -13,12 +13,12 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import static com.example.dentistapplication.R.menu.right_menu;
 
-public class PHomeActivity extends AppCompatActivity {
+public class pHomeActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_phome);
+        setContentView(R.layout.p_activity_home);
     }
 
     @Override
@@ -33,7 +33,7 @@ public class PHomeActivity extends AppCompatActivity {
         int id = item.getItemId();
         if (id==R.id.action_logout){
             FirebaseAuth.getInstance().signOut();
-            startActivity(new Intent(PHomeActivity.this, LoginActivity.class));
+            startActivity(new Intent(pHomeActivity.this, LoginActivity.class));
         }
         return super.onOptionsItemSelected(item);
     }
