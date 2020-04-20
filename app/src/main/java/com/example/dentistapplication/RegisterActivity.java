@@ -22,18 +22,23 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.HashMap;
 
+/*
+    aktywność, w której następuje proces rejestracji uzytkownika w aplikacji
+ */
+
 public class RegisterActivity extends AppCompatActivity {
     EditText emailTxt, passwordTxt,nameTxt, surnameTxt, numberTxt;
     Button registerBtn;
-    private FirebaseAuth mAuth;
     String userType;
 
+    //deklaracja instancji FirebaseAuth i FirebaseDatabase
+    private FirebaseAuth mAuth;
+    private FirebaseDatabase firebaseDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-
 
         emailTxt = findViewById(R.id.emailTxt);
         passwordTxt = findViewById(R.id.passwordTxt);
@@ -42,19 +47,28 @@ public class RegisterActivity extends AppCompatActivity {
         numberTxt = findViewById(R.id.numberTxt);
         registerBtn = findViewById(R.id.registerBtn);
 
+        //inicjacja instancji FirebaseAuth
+        mAuth = FirebaseAuth.getInstance();
+
+        //reakcja na kliknięciu przycisku "Zarejestruj się"
         registerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                mAuth = FirebaseAuth.getInstance();
-
+                /* zapisanie do zmiennych wartości z pól tekstowych
+                    - adres e-mail
+                    - hasło
+                    - imię
+                    - nazwisko
+                    - numer telefonu
+                 */
                 String email = emailTxt.getText().toString();
                 String password = passwordTxt.getText().toString();
                 final String name = nameTxt.getText().toString();
                 final String surname = surnameTxt.getText().toString();
                 final String number = numberTxt.getText().toString();
 
-
+                //sprawdzanie, czy pola są uzupełnione
                 if(email.isEmpty()){
                     emailTxt.setError("Proszę wprowadź email..");
                     emailTxt.requestFocus();
@@ -64,33 +78,37 @@ public class RegisterActivity extends AppCompatActivity {
                     passwordTxt.requestFocus();
                 }
                 else if(name.isEmpty()){
-                    nameTxt.setError("Proszę wprowadź hasło..");
+                    nameTxt.setError("Proszę wprowadź imię..");
                     nameTxt.requestFocus();
                 }
                 else if(surname.isEmpty()){
-                    surnameTxt.setError("Proszę wprowadź hasło..");
+                    surnameTxt.setError("Proszę wprowadź nazwisko..");
                     surnameTxt.requestFocus();
                 }
                 else if(number.isEmpty()){
-                    numberTxt.setError("Proszę wprowadź hasło..");
+                    numberTxt.setError("Proszę wprowadź numer telefonu..");
                     numberTxt.requestFocus();
                 }else {
+                    //odwołanie się do instancji FirebaseAuth i utworzenie nowego użytkownika
                     mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
                         @SuppressLint("ShowToast")
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if(!task.isSuccessful()){
+                                //rejestracja nie powiodła się
                                 Toast.makeText(RegisterActivity.this, "Rejestracja nie powiodła się, proszę spróbuj ponownie", Toast.LENGTH_SHORT);
                             } else {
+                                //rejestracja powiodła się, stworzony został nowy użytkownika w sekcji 'Authentication', należy jeszcze dodać użytkownika do tabeli w bazie danych
 
+                                //pobranie aktualnie zalogowanego użytkownika
                                 FirebaseUser user = mAuth.getCurrentUser();
 
-                                //get user email and uid
+                                //pobranie adresu e-mail i identyfikatora uid aktualnie zalogowanego użytkownika
                                 assert user != null;
                                 String email = user.getEmail();
                                 String uid = user.getUid();
 
-                                //Store info in Firebase database
+                                //utworzenie HashMap i uzupełnienie jej danymi na temat nowego użytkownika
                                 HashMap<Object, String> hashMap = new HashMap<>();
                                 hashMap.put("email", email);
                                 hashMap.put("name", name);
@@ -101,54 +119,46 @@ public class RegisterActivity extends AppCompatActivity {
                                 hashMap.put("address", "");
                                 hashMap.put("description", "");
 
+                                //inicjacja instancji FirebaseDatabase
+                                firebaseDatabase = FirebaseDatabase.getInstance();
 
-                                //firebase database instance
-                                FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-                                //path to store data named "Patients"
+                                //referencja do ścieżki do tabeli 'Users'
                                 DatabaseReference reference1 = firebaseDatabase.getReference("Users");
-                                //put data in database
+                                //przesłanie hashMap z danymi użytkownika do bazy
                                 reference1.child(uid).setValue(hashMap);
-                                //start patients app
-                                //check if user is patient or doctor
+
+                                //sprawdzanie czy użytkownik się zalogował jako pacjent, czy jako lekarz
                                 if("patient".equals(userType)){
-                                    //path to store data named "Patients"
+                                    //referencja do ścieżki do tabeli 'Patients'
                                     DatabaseReference reference2 = firebaseDatabase.getReference("Patients");
-                                    //put data in database
+                                    //przesłanie hashMap z danymi użytkownika do bazy
                                     reference2.child(uid).setValue(hashMap);
-                                    //start patients app
+                                    //otwórz aplikację po stronie pacjenta
                                     Toast.makeText(RegisterActivity.this, "Zalogowałeś się do aplikacji DentAPP jako pacjent danym mailem : " + email, Toast.LENGTH_LONG).show();
                                     startActivity(new Intent(RegisterActivity.this, pHomeActivity.class));
                                     finish();
                                 } else {
-                                    //path to store data named "Doctors"
+                                    //referencja do ścieżki do tabeli 'Doctors'
                                     DatabaseReference reference3 = firebaseDatabase.getReference("Doctors");
-                                    //put data in database
+                                    //przesłanie hashMap z danymi użytkownika do bazy
                                     reference3.child(uid).setValue(hashMap);
-                                    //start doctors app
+                                    //otwórz aplikację po stronie pacjenta
                                     Toast.makeText(RegisterActivity.this, "Zalogowałeś się do aplikacji DentAPP jako doktor danym mailem : " + email, Toast.LENGTH_LONG).show();
-                                    //go to results activity after logging in
                                     startActivity(new Intent(RegisterActivity.this, dHomeActivity.class));
                                     finish();
                                 }
-
                             }
                         }
                     });
                 }
-
             }
         });
-
-
-
-
     }
 
+    //funkcja sprawdzającą którą opcję rejestracji wybrał użytkownik - lekarz czy pacjent
     public void onRadioButtonClicked(View view) {
-        // Is the button now checked?
         boolean checked = ((RadioButton) view).isChecked();
-
-        // Check which radio button was clicked
+        //Nadanie wartości parametrowi 'userType'
         switch(view.getId()) {
             case R.id.radio_patient:
                 if (checked)

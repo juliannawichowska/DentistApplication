@@ -21,6 +21,7 @@ public class pHomeActivity extends AppCompatActivity {
         setContentView(R.layout.p_activity_home);
     }
 
+    //dodanie menu po prawej stronie w górnym rogu
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -28,6 +29,7 @@ public class pHomeActivity extends AppCompatActivity {
         return true;
     }
 
+    //funkcja umożliwiająca wybranie z prawego górnego rogu opcję 'Wyloguj się'
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
