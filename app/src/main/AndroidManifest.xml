@@ -4,7 +4,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:icon="@mipmap/ic_launcher"
@@ -13,10 +13,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".pHomeActivity"
+            android:label="@string/title_activity_p_home"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
             android:name=".dHomeActivity"
             android:label="DHomeActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".pHomeActivity" />
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".LoginActivity">
             <intent-filter>

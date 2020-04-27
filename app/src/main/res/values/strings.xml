@@ -28,7 +28,16 @@
     <string name="descriptionHeader">Opis</string>
     <string name="addressHeader">Adres gabinetu</string>
     <string name="numberHeader">Numer telefonu</string>
+    <string name="title_activity_p_home">pHomeActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_desc">Navigation header</string>
 
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+
+    <string name="home_second">Home Second</string>
 
 
 </resources>

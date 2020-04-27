@@ -53,7 +53,7 @@ import java.util.HashMap;
 import static android.app.Activity.RESULT_OK;
 
 /*
-    Fragment ten odpowiada za wyświetlenie profilu lekarza, oraz umożliwia mu edycke danych
+    Fragment ten odpowiada za wyświetlenie profilu lekarza, oraz umożliwia mu edycje danych
  */
 
 public class dProfileFragment extends Fragment {
