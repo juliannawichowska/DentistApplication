@@ -15,13 +15,13 @@ import com.example.dentistapplication.R;
  */
 public class pCalendarFragment extends Fragment {
 
-    private pCalendarViewModel slideshowViewModel;
+    private pCalendarViewModel calendarViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        slideshowViewModel =
+        calendarViewModel =
                 ViewModelProviders.of(this).get(pCalendarViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_slideshow, container, false);
+        View root = inflater.inflate(R.layout.p_fragment_calendar, container, false);
         return root;
     }
 }

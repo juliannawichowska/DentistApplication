@@ -19,20 +19,13 @@ import com.example.dentistapplication.R;
 
 public class pToolsFragment extends Fragment {
 
-    private pToolsViewModel galleryViewModel;
+    private pToolsViewModel toolsViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        galleryViewModel =
+        toolsViewModel =
                 ViewModelProviders.of(this).get(pToolsViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_gallery, container, false);
-        final TextView textView = root.findViewById(R.id.text_gallery);
-        galleryViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
-        });
+        View root = inflater.inflate(R.layout.p_fragment_tools, container, false);
         return root;
     }
 }
