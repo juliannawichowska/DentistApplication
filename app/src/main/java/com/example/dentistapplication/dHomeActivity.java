@@ -60,7 +60,7 @@ public class dHomeActivity extends AppCompatActivity {
         user = firebaseAuth.getCurrentUser();
 
         //referencja do ścieżki do tabeli 'Users'
-        databaseReference = firebaseDatabase.getReference("Users");
+        databaseReference = firebaseDatabase.getReference("Doctors");
 
         //Zainicjowanie menu głównego
         DrawerLayout drawer = findViewById(R.id.drawer_layout);

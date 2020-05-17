@@ -1,5 +1,6 @@
 package com.example.dentistapplication.ui.pHome;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -57,6 +58,7 @@ public class AdapterDoctors extends RecyclerView.Adapter<AdapterDoctors.MyHolder
 
         //następstwo kliknięcia w danego lekarza
         myHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("ShowToast")
             @Override
             public void onClick(View v) {
                 Toast.makeText(context,"kliknięto"+doctorName,Toast.LENGTH_LONG);

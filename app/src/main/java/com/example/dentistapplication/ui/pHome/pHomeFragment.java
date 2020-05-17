@@ -48,8 +48,7 @@ public class pHomeFragment extends Fragment {
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
 
         //zainicjowanie Recycler View
-        recyclerView = (RecyclerView) root.findViewById(R.id.doctors_RecyclerView);
-
+        recyclerView = root.findViewById(R.id.doctors_RecyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 

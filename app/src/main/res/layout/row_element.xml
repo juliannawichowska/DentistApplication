@@ -6,12 +6,12 @@
     android:layout_height="wrap_content"
     android:padding="16dp">
 
-    <com.blogspot.atifsoftwares.circularimageview.CircularImageView
+    <ImageView
         android:id="@+id/rImage"
         android:layout_width="75dp"
         android:layout_height="75dp"
         app:srcCompat="@drawable/ic_doctors">
-    </com.blogspot.atifsoftwares.circularimageview.CircularImageView>
+    </ImageView>
 
     <LinearLayout
         android:layout_width="match_parent"

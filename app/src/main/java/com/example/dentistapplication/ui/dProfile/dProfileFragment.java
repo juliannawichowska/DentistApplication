@@ -99,7 +99,7 @@ public class dProfileFragment extends Fragment {
         user = firebaseAuth.getCurrentUser();
 
         //referencja do ścieżki do tabeli 'Users'
-        databaseReference = firebaseDatabase.getReference("Users");
+        databaseReference = firebaseDatabase.getReference("Doctors");
 
         avatar = root.findViewById(R.id.Avatar);
         nameSurname = root.findViewById(R.id.NameSurname);
@@ -567,7 +567,7 @@ public class dProfileFragment extends Fragment {
                             hashMap.put("imageURL", downloadUri);
 
                             //zaktualizowanie bazy danych o adres uri
-                            databaseReference.child("Users/"+user.getUid()).updateChildren(hashMap)
+                            databaseReference.child("Doctors/"+user.getUid()).updateChildren(hashMap)
                                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
                                         public void onSuccess(Void aVoid) {
