@@ -13,8 +13,8 @@
             android:layout_width="396dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginLeft="40dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="25dp"
             android:gravity="center_horizontal"
             android:text="@string/p_fragment_calnedar"
             android:textAlignment="center"
@@ -26,15 +26,22 @@
     </RelativeLayout>
 
     <LinearLayout
+        android:layout_width="400dp"
+        android:layout_height="420dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
         android:layout_marginTop="150dp"
-        android:layout_width="300dp"
-        android:layout_height="400dp"
-        android:layout_marginLeft="70dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
         android:background="@drawable/bg_calendar">
 
         <CalendarView
-            android:layout_width="320dp"
-            android:layout_height="match_parent">
+            android:layout_width="380dp"
+            android:layout_height="420dp">
 
         </CalendarView>
 
