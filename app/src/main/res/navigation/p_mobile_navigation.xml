@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/p_mobile_navigation"
+    app:startDestination="@+id/p_nav_home">
+
+
+    <fragment
+        android:id="@+id/p_nav_home"
+        android:name="com.example.dentistapplication.ui.pHome.pHomeFragment"
+        android:label="Pulpit"
+        tools:layout="@layout/p_fragment_home" />
+
+    <fragment
+        android:id="@+id/p_nav_calendar"
+        android:name="com.example.dentistapplication.ui.pCalendar.pCalendarFragment"
+        android:label="Kalendarz wizyt"
+        tools:layout="@layout/p_fragment_calendar" />
+
+    <fragment
+        android:id="@+id/p_nav_tools"
+        android:name="com.example.dentistapplication.ui.pTools.pToolsFragment"
+        android:label="Ustawienia"
+        tools:layout="@layout/p_fragment_tools" />
+
+</navigation>

@@ -17,7 +17,7 @@ import com.example.dentistapplication.R;
  */
 
 public class dHomeFragment extends Fragment {
-    TextView textView;
+
     private dHomeViewModel dHomeViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,

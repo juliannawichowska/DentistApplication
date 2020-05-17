@@ -1,5 +1,6 @@
 package com.example.dentistapplication.ui.pHome;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.view.LayoutInflater;
@@ -8,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.TintContextWrapper;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -33,6 +35,7 @@ public class pHomeFragment extends Fragment {
     private pHomeViewModel phomeViewModel;
     AdapterDoctors adapterDoctors;
     List<ModelDoctors> doctorsList;
+    Context context;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -41,8 +44,12 @@ public class pHomeFragment extends Fragment {
                 ViewModelProviders.of(this).get(pHomeViewModel.class);
         View root = inflater.inflate(R.layout.p_fragment_home, container, false);
 
+        final LinearLayoutManager layoutManager = new LinearLayoutManager(context);
+        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+
         //zainicjowanie Recycler View
-        recyclerView = recyclerView.findViewById(R.id.doctors_RecyclerView);
+        recyclerView = (RecyclerView) root.findViewById(R.id.doctors_RecyclerView);
+
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
