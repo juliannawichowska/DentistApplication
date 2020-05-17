@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CalendarView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -14,7 +16,8 @@ import com.example.dentistapplication.R;
     Fragment ten odpowiada za wyświetlenie kalendarza pacjenta
  */
 public class pCalendarFragment extends Fragment {
-
+    CalendarView calendarView;
+    TextView my_calendar;
     private pCalendarViewModel calendarViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,

@@ -48,7 +48,7 @@ public class pHomeFragment extends Fragment {
 
         //zainicjowanie listy użytkowników
         doctorsList = new ArrayList<>();
-        
+
         //pobierz wszystkich użytkowników
         getAllDoctors();
 

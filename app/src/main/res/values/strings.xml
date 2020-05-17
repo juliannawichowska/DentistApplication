@@ -41,6 +41,6 @@
     <string name="doctorName">Imie </string>
     <string name="doctorSurname">Nazwisko lekarza</string>
     <string name="address">Adres gabinetu</string>
-
+    <string name="p_fragment_calnedar">Przejrzyj wizyty</string>
 
 </resources>
