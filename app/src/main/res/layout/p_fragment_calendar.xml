@@ -43,7 +43,8 @@
 
         <CalendarView
             android:layout_width="380dp"
-            android:layout_height="420dp">
+            android:layout_height="match_parent">
+
         </CalendarView>
 
     </LinearLayout>
