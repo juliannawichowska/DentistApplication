@@ -31,19 +31,18 @@ public class AdapterDoctors extends RecyclerView.Adapter<AdapterDoctors.MyHolder
     @NonNull
     @Override
     public MyHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        //inflate layout
+        //wyświetlenie layoutu
         View view = LayoutInflater.from(context).inflate(R.layout.row_element, parent, false);
         return  new MyHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyHolder myHolder, int i) {
-        //pobieranie danych do wyświetlenia
+        //pobieranie danych do wyświetlenia na liście
         String doctorImage = doctorsList.get(i).getImageURL();
-        final String doctorName = doctorsList.get(i).getName();
+        String doctorName = doctorsList.get(i).getName();
         String doctorSurname = doctorsList.get(i).getSurname();
         String doctorAddress = doctorsList.get(i).getAddress();
-        final String doctorEmail = doctorsList.get(i).getEmail();
 
         //ustawianie danych lekarza
         myHolder.mName.setText(doctorName);
@@ -55,15 +54,15 @@ public class AdapterDoctors extends RecyclerView.Adapter<AdapterDoctors.MyHolder
                     .into(myHolder.mImage);
         }
         catch (Exception e){
-
         }
 
-        //następstwo kliknięcia w danego lekarza
-        myHolder.itemView.setOnClickListener(new View.OnClickListener() {
+        //pobranie adresu e-mail danego lekarza
+        final String doctorEmail = doctorsList.get(i).getEmail();
 
+        //wyświetlenie profilu wybranego lekarza w momencie gdy zostanie kliknięty
+        myHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context,"kliknięto "+doctorName,Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(context, doctorProfile.class);
                 intent.putExtra("doctorEmail",doctorEmail);
                 context.startActivity(intent);

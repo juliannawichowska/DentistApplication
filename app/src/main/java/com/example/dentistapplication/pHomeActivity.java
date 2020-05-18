@@ -17,7 +17,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import android.content.Intent;
 import android.view.MenuItem;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -29,7 +28,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.squareup.picasso.Picasso;
 import com.google.firebase.auth.FirebaseAuth;
 
 
@@ -106,7 +104,7 @@ public class pHomeActivity extends AppCompatActivity {
     //dodanie menu po prawej stronie w górnym rogu
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.right_menu, menu);
+        getMenuInflater().inflate(R.menu.d_right_menu, menu);
         return true;
     }
 
