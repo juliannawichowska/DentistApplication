@@ -109,6 +109,7 @@ public class dHomeActivity extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError databaseError) {
             }
         });
+
     }
 
     //dodanie menu po prawej stronie w górnym rogu

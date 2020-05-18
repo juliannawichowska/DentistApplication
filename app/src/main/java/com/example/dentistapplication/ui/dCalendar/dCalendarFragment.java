@@ -13,6 +13,8 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.example.dentistapplication.R;
 
+import java.util.Calendar;
+
 /*
     Fragment ten odpowiada za wyświetlenie kalendarza lekarza
  */
@@ -22,12 +24,9 @@ public class dCalendarFragment extends Fragment {
     TextView my_calendar;
     private dCalendarViewModel dCalendarViewModel;
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
-        dCalendarViewModel =
-                ViewModelProviders.of(this).get(dCalendarViewModel.class);
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        dCalendarViewModel = ViewModelProviders.of(this).get(dCalendarViewModel.class);
         View root = inflater.inflate(R.layout.d_fragment_calendar, container, false);
-
         return root;
     }
 }
