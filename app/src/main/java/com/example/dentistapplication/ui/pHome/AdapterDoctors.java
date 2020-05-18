@@ -2,6 +2,7 @@ package com.example.dentistapplication.ui.pHome;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,6 +43,7 @@ public class AdapterDoctors extends RecyclerView.Adapter<AdapterDoctors.MyHolder
         final String doctorName = doctorsList.get(i).getName();
         String doctorSurname = doctorsList.get(i).getSurname();
         String doctorAddress = doctorsList.get(i).getAddress();
+        final String doctorEmail = doctorsList.get(i).getEmail();
 
         //ustawianie danych lekarza
         myHolder.mName.setText(doctorName);
@@ -58,10 +60,13 @@ public class AdapterDoctors extends RecyclerView.Adapter<AdapterDoctors.MyHolder
 
         //następstwo kliknięcia w danego lekarza
         myHolder.itemView.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint("ShowToast")
+
             @Override
             public void onClick(View v) {
-                Toast.makeText(context,"kliknięto"+doctorName,Toast.LENGTH_LONG);
+                Toast.makeText(context,"kliknięto "+doctorName,Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(context, doctorProfile.class);
+                intent.putExtra("doctorEmail",doctorEmail);
+                context.startActivity(intent);
             }
         });
     }

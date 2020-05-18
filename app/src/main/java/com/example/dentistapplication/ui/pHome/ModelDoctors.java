@@ -2,18 +2,20 @@ package com.example.dentistapplication.ui.pHome;
 
 public class ModelDoctors {
 
-    String name, surname, address, imageURL, search;
+    String name, surname, address, imageURL, search, email;
 
     public ModelDoctors() {
     }
 
-    public ModelDoctors(String name, String surname, String address, String imageURL, String search) {
+    public ModelDoctors(String name, String surname, String address, String imageURL, String search, String email) {
         this.name = name;
         this.surname = surname;
         this.address = address;
         this.imageURL = imageURL;
         this.search = search;
+        this.email = email;
     }
+
 
     public String getName() {
         return name;
@@ -53,5 +55,13 @@ public class ModelDoctors {
 
     public void setSearch(String search) {
         this.search = search;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }
