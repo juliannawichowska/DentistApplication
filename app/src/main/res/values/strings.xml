@@ -41,6 +41,9 @@
     <string name="doctorName">Imie </string>
     <string name="doctorSurname">Nazwisko lekarza</string>
     <string name="address">Adres gabinetu</string>
-    <string name="p_fragment_calnedar">Przejrzyj wizyty</string>
+    <string name="p_fragment_calendar">Podaj dyspozycyjność</string>
+    <string name="choose_date">Wybierz dzień</string>
+    <string name="choose_time">Wybierz godzinę</string>
     <string name="search">Wyszukuj</string>
+    <string name="data_save">Zatwierdź</string>
 </resources>

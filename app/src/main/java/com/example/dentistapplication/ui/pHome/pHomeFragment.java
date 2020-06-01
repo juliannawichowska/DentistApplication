@@ -69,7 +69,7 @@ public class pHomeFragment extends Fragment {
         getAllDoctors();
 
         //wyświetlanie menu po prawej stronie
-        setHasOptionsMenu(true);
+       // setHasOptionsMenu(true);
 
         return root;
     }

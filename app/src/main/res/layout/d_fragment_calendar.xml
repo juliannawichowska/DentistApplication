@@ -5,18 +5,19 @@
     android:layout_height="match_parent">
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="60dp"
         android:background="@color/colorMainAccent">
 
         <TextView
             android:id="@+id/my_calendar"
             android:layout_width="396dp"
             android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="25dp"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="17dp"
             android:gravity="center_horizontal"
-            android:text="@string/p_fragment_calnedar"
+            android:text="@string/p_fragment_calendar"
             android:textAlignment="center"
             android:textColor="@color/colorWhite"
             android:textSize="22sp"
@@ -25,25 +26,62 @@
             app:layout_constraintTop_toTopOf="parent" />
     </RelativeLayout>
 
-    <LinearLayout
-        android:layout_width="400dp"
-        android:layout_height="420dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="150dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginRight="20dp"
-        android:background="@drawable/bg_calendar">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="301dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="60dp"
+        android:layout_marginBottom="298dp"
+        android:background="@drawable/bg_calendar"
+        android:orientation="vertical"
+        android:padding="7dp">
 
-        <CalendarView
-            android:layout_width="380dp"
-            android:layout_height="420dp">
+        <EditText
+            android:id="@+id/in_date"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="82dp" />
 
-        </CalendarView>
+        <Button
+            android:id="@+id/btn_date"
+            android:layout_width="175dp"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/in_date"
+            android:layout_marginBottom="0dp"
+            android:layout_toEndOf="@+id/in_date"
+            android:layout_toRightOf="@+id/in_date"
+            android:text="@string/choose_date" />
 
-    </LinearLayout>
+        <EditText
+            android:id="@+id/in_time"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/in_date"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true" />
+
+        <Button
+            android:id="@+id/btn_time"
+            android:layout_width="176dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/btn_date"
+            android:layout_alignStart="@+id/btn_date"
+            android:layout_alignLeft="@+id/btn_date"
+            android:text="@string/choose_time" />
+
+        <Button
+            android:id="@+id/btn_save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="174dp"
+            android:layout_marginRight="174dp"
+            android:layout_marginBottom="25dp"
+            android:text="Zatwierdź" />
+    </RelativeLayout>
 </RelativeLayout>
