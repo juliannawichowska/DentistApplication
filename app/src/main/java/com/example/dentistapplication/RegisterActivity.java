@@ -140,8 +140,8 @@ public class RegisterActivity extends AppCompatActivity {
                                 } else {
                                     //referencja do ścieżki do tabeli 'Doctors'
                                     DatabaseReference reference3 = firebaseDatabase.getReference("Doctors");
-                                    //przesłanie hashMap z danymi użytkownika do bazy
-                                    reference3.child(uid).setValue(hashMap);
+                                    //przesłanie hashMap z danymichild(uid). użytkownika do bazy
+                                    reference3.setValue(hashMap);
                                     //otwórz aplikację po stronie pacjenta
                                     Toast.makeText(RegisterActivity.this, "Zalogowałeś się do aplikacji DentAPP jako doktor danym mailem : " + email, Toast.LENGTH_LONG).show();
                                     startActivity(new Intent(RegisterActivity.this, dHomeActivity.class));

@@ -133,6 +133,27 @@
                     android:paddingStart="30dp">
                 </TextView>
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:textSize="20sp"
+                    android:text="Masz pytania?"
+                    android:textStyle="bold|italic"
+                    android:layout_gravity="center">
+                </TextView>
+
+                <Button
+                    android:id="@+id/callDoctor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:text="Zadzwoń  "
+                    android:drawableRight="@drawable/ic_call"
+                    android:layout_gravity="center">
+                </Button>
+
+
             </LinearLayout>
 
         </RelativeLayout>

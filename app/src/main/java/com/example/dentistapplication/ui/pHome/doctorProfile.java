@@ -2,12 +2,19 @@ package com.example.dentistapplication.ui.pHome;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.dentistapplication.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -25,6 +32,7 @@ public class doctorProfile extends AppCompatActivity {
 
     ImageView avatar;
     TextView nameSurname, email, descriptionContent, numberContent, addressContent;
+    Button callDoctor;
 
     //deklaracja instancji FirebaseAuth, FirebaseUser, FirebaseDatabase i FirebaseReference
     FirebaseAuth firebaseAuth;
@@ -36,12 +44,24 @@ public class doctorProfile extends AppCompatActivity {
     //dres url zdjęcia profilowego
     Uri image_uri;
 
+    private static final int REQUEST_CALL = 1;
 
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if (requestCode == REQUEST_CALL){
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+
+            } else {
+                Toast.makeText(this, "Nie uzyskano zgody", Toast.LENGTH_LONG).show();
+            }
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_doctor_profile);
+        setContentView(R.layout.p_activity_doctor_profile);
 
         //inicjacja instancji FirebaseAuth i FirebaseDatabase
         firebaseAuth =  FirebaseAuth.getInstance();
@@ -57,8 +77,9 @@ public class doctorProfile extends AppCompatActivity {
         descriptionContent = findViewById(R.id.descriptionContent);
         numberContent = findViewById(R.id.numberContent);
         addressContent = findViewById(R.id.addressContent);
+        callDoctor = findViewById(R.id.callDoctor);
 
-        String doctorEmail;
+        final String doctorEmail;
 
         Intent intent = getIntent();
         doctorEmail = intent.getStringExtra("doctorEmail");
@@ -98,5 +119,41 @@ public class doctorProfile extends AppCompatActivity {
             }
         });
 
+        callDoctor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                //wyszukanie użytkownika po mailu
+                Query query = databaseReference.orderByChild("email").equalTo(doctorEmail);
+                query.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                        for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                            //zapisanie do zmiennych wartości z bazy danych
+
+                            String number_call = "" + ds.child("number").getValue();
+                            if(ContextCompat.checkSelfPermission(doctorProfile.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED){
+                                ActivityCompat.requestPermissions(doctorProfile.this, new String[] {Manifest.permission.CALL_PHONE}, REQUEST_CALL);
+                            } else {
+                                String dial = "tel: " + number_call;
+                                startActivity(new Intent(Intent.ACTION_CALL, Uri.parse(dial)));
+                            }
+
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                    }
+
+
+                });
+
+            }
+        });
+
     }
 }
+
