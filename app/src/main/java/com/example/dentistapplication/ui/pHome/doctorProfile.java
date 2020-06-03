@@ -4,8 +4,11 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -27,12 +30,19 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class doctorProfile extends AppCompatActivity {
 
     ImageView avatar;
     TextView nameSurname, email, descriptionContent, numberContent, addressContent;
     Button callDoctor;
+    RecyclerView recyclerView;
+    AdapterDates adapterDates;
+    List<ModelDates> datesList;
+    Context context;
 
     //deklaracja instancji FirebaseAuth, FirebaseUser, FirebaseDatabase i FirebaseReference
     FirebaseAuth firebaseAuth;
@@ -79,10 +89,27 @@ public class doctorProfile extends AppCompatActivity {
         addressContent = findViewById(R.id.addressContent);
         callDoctor = findViewById(R.id.callDoctor);
 
+        final LinearLayoutManager layoutManager = new LinearLayoutManager(context);
+        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+
+        //zainicjowanie Recycler View
+        recyclerView = findViewById(R.id.dates_RecyclerView);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(layoutManager);
+        //recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+        //zainicjowanie listy użytkowników
+        datesList = new ArrayList<>();
+
         final String doctorEmail;
+        final String doctorUserUid;
 
         Intent intent = getIntent();
         doctorEmail = intent.getStringExtra("doctorEmail");
+        doctorUserUid = intent.getStringExtra("doctorUserUid");
+
+        //pobierz wszystkich użytkowników
+        getAllDates(doctorUserUid);
 
         //wyszukanie użytkownika po mailu
         Query query = databaseReference.orderByChild("email").equalTo(doctorEmail);
@@ -154,6 +181,31 @@ public class doctorProfile extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void getAllDates(String doctorUserUid) {
+        //pobierz wszystkie daty
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Dates/"+ doctorUserUid);
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                datesList.clear();
+                for(DataSnapshot ds: dataSnapshot.getChildren()) {
+                    ModelDates modelDates = ds.getValue(ModelDates.class);
+                    datesList.add(modelDates);
+                    adapterDates = new AdapterDates(context, datesList);
+                    //set adapter to recycler view
+                    recyclerView.setAdapter(adapterDates);
+                }
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 }
 

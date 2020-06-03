@@ -58,6 +58,7 @@ public class AdapterDoctors extends RecyclerView.Adapter<AdapterDoctors.MyHolder
 
         //pobranie adresu e-mail danego lekarza
         final String doctorEmail = doctorsList.get(i).getEmail();
+        final String doctorUserUid = doctorsList.get(i).getUserUid();
 
         //wyświetlenie profilu wybranego lekarza w momencie gdy zostanie kliknięty
         myHolder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -65,6 +66,7 @@ public class AdapterDoctors extends RecyclerView.Adapter<AdapterDoctors.MyHolder
             public void onClick(View v) {
                 Intent intent = new Intent(context, doctorProfile.class);
                 intent.putExtra("doctorEmail",doctorEmail);
+                intent.putExtra("doctorUserUid",doctorUserUid);
                 context.startActivity(intent);
             }
         });

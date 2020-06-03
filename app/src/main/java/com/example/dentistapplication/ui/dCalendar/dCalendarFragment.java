@@ -113,16 +113,16 @@ public class dCalendarFragment extends Fragment implements View.OnClickListener 
         {
             DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
             //referencja do ścieżki do tabeli 'Users'
-            databaseReference = firebaseDatabase.getReference("daty");
+            databaseReference = firebaseDatabase.getReference("Dates");
             //zapisanie do zmiennej wprowadzonego adresu
             String value1 = txtDate.getText().toString().trim() ;
             String value2 = txtTime.getText().toString().trim() ;//+ txtTime.getText().toString().trim();
-            boolean free  = true;
+            String free  = "true";
             //utworzenie HashMap z adresem gabinetu
             Map<String, Object> result = new HashMap<>();
-            result.put("free visit termin: date", value1);
-            result.put("free visit termin: time", value2);
-            result.put("if free", free);
+            result.put("date", value1);
+            result.put("hour", value2);
+            result.put("free", free);
             String key = databaseReference.push().getKey();
 
             //zaktualizowanie bazy danych o wolny termin

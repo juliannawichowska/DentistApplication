@@ -2,7 +2,7 @@ package com.example.dentistapplication.ui.pHome;
 
 public class ModelDoctors {
 
-    String name, surname, address, imageURL, search, email;
+    String name, surname, address, imageURL, search, email, userUid;
 
     public ModelDoctors() {
     }
@@ -14,6 +14,7 @@ public class ModelDoctors {
         this.imageURL = imageURL;
         this.search = search;
         this.email = email;
+        this.userUid = userUid;
     }
 
 
@@ -63,5 +64,13 @@ public class ModelDoctors {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getUserUid() {
+        return userUid;
+    }
+
+    public void setUserUid(String userUid) {
+        this.userUid = userUid;
     }
 }

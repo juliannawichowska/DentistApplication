@@ -153,6 +153,11 @@
                     android:layout_gravity="center">
                 </Button>
 
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/dates_RecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                </androidx.recyclerview.widget.RecyclerView>
 
             </LinearLayout>
 

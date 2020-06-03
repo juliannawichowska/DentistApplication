@@ -28,10 +28,10 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="301dp"
+        android:layout_height="801dp"
         android:layout_alignParentBottom="true"
         android:layout_marginTop="60dp"
-        android:layout_marginBottom="286dp"
+        android:layout_marginBottom="186dp"
         android:background="@drawable/bg_calendar"
         android:orientation="vertical"
         android:padding="7dp">
@@ -50,7 +50,6 @@
             android:layout_width="175dp"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/in_date"
-            android:layout_marginBottom="0dp"
             android:layout_toEndOf="@+id/in_date"
             android:layout_toRightOf="@+id/in_date"
             android:text="@string/choose_date" />
