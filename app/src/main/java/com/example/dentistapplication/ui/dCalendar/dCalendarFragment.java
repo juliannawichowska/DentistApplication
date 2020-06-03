@@ -85,7 +85,7 @@ public class dCalendarFragment extends Fragment implements View.OnClickListener 
                     new DatePickerDialog.OnDateSetListener() {
                         @Override
                         public void onDateSet(DatePicker view, int year,  int monthOfYear, int dayOfMonth) {
-                            txtDate.setText(dayOfMonth + "." + (monthOfYear + 1) + "." + year);
+                            txtDate.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
                         }
                     }, mYear, mMonth, mDay);
             datePickerDialog.show();
@@ -113,16 +113,20 @@ public class dCalendarFragment extends Fragment implements View.OnClickListener 
         {
             DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
             //referencja do ścieżki do tabeli 'Users'
-            databaseReference = firebaseDatabase.getReference("Doctors");
-
+            databaseReference = firebaseDatabase.getReference("daty");
+            //zapisanie do zmiennej wprowadzonego adresu
             String value1 = txtDate.getText().toString().trim() ;
             String value2 = txtTime.getText().toString().trim() ;//+ txtTime.getText().toString().trim();
-
+            boolean free  = true;
+            //utworzenie HashMap z adresem gabinetu
             Map<String, Object> result = new HashMap<>();
             result.put("free visit termin: date", value1);
             result.put("free visit termin: time", value2);
+            result.put("if free", free);
+            String key = databaseReference.push().getKey();
+
             //zaktualizowanie bazy danych o wolny termin
-            databaseReference.child(user.getUid()).updateChildren(result)
+            databaseReference.child(user.getUid()).child(key).setValue(result)
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {
