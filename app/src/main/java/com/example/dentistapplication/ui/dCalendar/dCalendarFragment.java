@@ -118,12 +118,17 @@ public class dCalendarFragment extends Fragment implements View.OnClickListener 
             String value1 = txtDate.getText().toString().trim() ;
             String value2 = txtTime.getText().toString().trim() ;//+ txtTime.getText().toString().trim();
             String free  = "true";
+            String uid = user.getUid();
+            String key = databaseReference.push().getKey();
+            String uidPatient = "";
             //utworzenie HashMap z adresem gabinetu
             Map<String, Object> result = new HashMap<>();
             result.put("date", value1);
             result.put("hour", value2);
             result.put("free", free);
-            String key = databaseReference.push().getKey();
+            result.put("uid", uid);
+            result.put("key", key);
+            result.put("uidPatient", uidPatient);
 
             //zaktualizowanie bazy danych o wolny termin
             databaseReference.child(user.getUid()).child(key).setValue(result)

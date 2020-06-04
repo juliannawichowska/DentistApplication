@@ -13,7 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.pHome.doctorProfile"></activity>
+        <activity android:name=".ui.pHome.pVisit"></activity>
+        <activity android:name=".ui.pHome.doctorProfile" />
         <activity
             android:name=".pHomeActivity"
             android:label="@string/title_activity_p_home"

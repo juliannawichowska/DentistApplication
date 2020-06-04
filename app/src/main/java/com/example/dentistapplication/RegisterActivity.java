@@ -140,6 +140,8 @@ public class RegisterActivity extends AppCompatActivity {
                                 } else {
                                     //referencja do ścieżki do tabeli 'Doctors'
                                     DatabaseReference reference3 = firebaseDatabase.getReference("Doctors");
+                                    //dodanie uid doktora
+                                    hashMap.put("userUid", uid);
                                     //przesłanie hashMap z danymichild(uid). użytkownika do bazy
                                     reference3.setValue(hashMap);
                                     //otwórz aplikację po stronie pacjenta

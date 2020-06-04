@@ -130,8 +130,15 @@
                     android:textSize="15sp"
                     android:paddingLeft="30dp"
                     android:text="Ustaw numer telefonu"
-                    android:paddingStart="30dp">
+                    android:paddingStart="30dp"
+                    android:layout_marginBottom="20dp">
                 </TextView>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@android:color/darker_gray"
+                    android:padding="20dp"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -150,13 +157,35 @@
                     android:layout_margin="10dp"
                     android:text="Zadzwoń  "
                     android:drawableRight="@drawable/ic_call"
-                    android:layout_gravity="center">
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="20dp">
                 </Button>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@android:color/darker_gray"
+                    android:padding="20dp"
+                    android:layout_marginTop="20dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:textSize="20sp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginStart="20dp"
+                    android:text="Zarezerwuj wizytę "
+                    android:textStyle="bold|italic"
+                    android:layout_marginLeft="20dp">
+                </TextView>
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/dates_RecyclerView"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginStart="30dp">
                 </androidx.recyclerview.widget.RecyclerView>
 
             </LinearLayout>

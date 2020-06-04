@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout  xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="horizontal">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -19,7 +19,7 @@
             android:layout_marginLeft="40dp"
             android:layout_marginTop="13dp"
             android:gravity="center_horizontal"
-            android:text="@string/p_fragment_calendar"
+            android:text="Twoje wizyty"
             android:textAlignment="center"
             android:textColor="@color/colorWhite"
             android:textSize="22sp"
@@ -35,19 +35,7 @@
         android:background="@drawable/bg_calendar"
         android:padding="7dp" android:orientation="vertical">
 
-        <CalendarView
-            android:id="@+id/calendarView1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:calendarViewShown="false"/>
 
-        <ExpandableListView
-            android:id="@+id/expandableListView"
-            android:layout_height="match_parent"
-            android:layout_width="match_parent"
-            android:indicatorLeft="?android:attr/expandableListPreferredItemIndicatorLeft"
-            android:divider="@android:color/darker_gray"
-            android:dividerHeight="0.5dp" />
     </LinearLayout>
 
-</RelativeLayout>
+</LinearLayout>
