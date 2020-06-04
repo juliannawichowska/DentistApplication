@@ -33,7 +33,7 @@ public class pVisit extends AppCompatActivity {
     FirebaseAuth firebaseAuth;
     FirebaseUser user;
     FirebaseDatabase firebaseDatabase;
-    DatabaseReference databaseReference;
+    DatabaseReference databaseReference, databaseReference2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,6 +80,19 @@ public class pVisit extends AppCompatActivity {
                         //aktualizacja nie powiodła się
                     }
                 });
+
+        String key2 = databaseReference.push().getKey();
+        //referencja do ścieżki do tabeli 'Users'
+        databaseReference2 = firebaseDatabase.getReference("Visits/"+uidPatient);
+
+        //utworzenie HashMap i uzupełnienie jej danymi na temat nowego użytkownika
+        HashMap<Object, String> hashMap = new HashMap<>();
+        hashMap.put("day", day);
+        hashMap.put("hour", hour);
+        hashMap.put("uidDoctor", uidDoctor);
+
+        //przesłanie hashMap z danymi użytkownika do bazy
+        databaseReference2.child(key2).setValue(hashMap);
 
         FragmentManager fm = getSupportFragmentManager();
         pCalendarFragment fragment = new pCalendarFragment();
