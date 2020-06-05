@@ -131,6 +131,8 @@ public class RegisterActivity extends AppCompatActivity {
                                 if("patient".equals(userType)){
                                     //referencja do ścieżki do tabeli 'Patients'
                                     DatabaseReference reference2 = firebaseDatabase.getReference("Patients");
+                                    //dodanie uid doktora
+                                    hashMap.put("patientUid", uid);
                                     //przesłanie hashMap z danymi użytkownika do bazy
                                     reference2.child(uid).setValue(hashMap);
                                     //otwórz aplikację po stronie pacjenta

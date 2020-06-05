@@ -1,17 +1,23 @@
 package com.example.dentistapplication;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 
+import android.telephony.SmsManager;
 import android.view.MenuItem;
 import android.view.View;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.example.dentistapplication.ui.dHome.d_AdapterVisits;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -31,6 +37,7 @@ import androidx.appcompat.widget.Toolbar;
 import android.view.Menu;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class dHomeActivity extends AppCompatActivity {
     TextView userName, userEmail;
@@ -42,6 +49,8 @@ public class dHomeActivity extends AppCompatActivity {
     FirebaseUser user;
     FirebaseDatabase firebaseDatabase;
     DatabaseReference databaseReference;
+
+    final int SEND_SMS_PERMISSION_REQUEST_CODE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,6 +119,11 @@ public class dHomeActivity extends AppCompatActivity {
             }
         });
 
+        if (ContextCompat.checkSelfPermission(this,Manifest.permission.SEND_SMS)!=PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.SEND_SMS}, SEND_SMS_PERMISSION_REQUEST_CODE);
+        }
+
+
     }
 
     //dodanie menu po prawej stronie w górnym rogu
@@ -138,5 +152,11 @@ public class dHomeActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
+    }
+
+    //sprawdzenie pozwolanie na wysłanie sms
+    public boolean checkPermission(String permission){
+        int check = ContextCompat.checkSelfPermission(this,permission);
+        return (check == PackageManager.PERMISSION_GRANTED);
     }
 }
