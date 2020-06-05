@@ -35,4 +35,6 @@ public class ModelVisits {
     public void setUidDoctor(String uidDoctor) {
         this.uidDoctor = uidDoctor;
     }
+
+
 }

@@ -109,7 +109,7 @@ public class AdapterVisits extends RecyclerView.Adapter<com.example.dentistappli
         return visitsList.size();
     }
 
-    class MyHolder extends RecyclerView.ViewHolder {
+    public class MyHolder extends RecyclerView.ViewHolder {
 
         TextView vDay, vHour, vDoctor, vAddress, vNumber;
         ImageView vImage;

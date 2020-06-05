@@ -73,8 +73,8 @@
 
         <Button
             android:id="@+id/btn_save"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="102dp"
+            android:layout_height="100dp"
             android:layout_below="@+id/btn_time"
             android:layout_alignStart="@+id/in_time"
             android:layout_alignLeft="@+id/in_time"
@@ -83,9 +83,9 @@
             android:layout_alignParentBottom="true"
             android:layout_marginStart="123dp"
             android:layout_marginLeft="123dp"
-            android:layout_marginTop="39dp"
-            android:layout_marginEnd="152dp"
-            android:layout_marginRight="152dp"
+            android:layout_marginTop="99dp"
+            android:layout_marginEnd="151dp"
+            android:layout_marginRight="151dp"
             android:layout_marginBottom="25dp"
             android:text="Zatwierdź" />
     </RelativeLayout>
