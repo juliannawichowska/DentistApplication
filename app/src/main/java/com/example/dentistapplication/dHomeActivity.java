@@ -129,7 +129,7 @@ public class dHomeActivity extends AppCompatActivity {
     //dodanie menu po prawej stronie w górnym rogu
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.p_right_menu, menu);
+        getMenuInflater().inflate(R.menu.d_right_menu, menu);
         return true;
     }
 

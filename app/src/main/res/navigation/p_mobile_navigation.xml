@@ -9,7 +9,7 @@
     <fragment
         android:id="@+id/p_nav_home"
         android:name="com.example.dentistapplication.ui.pHome.pHomeFragment"
-        android:label="Terminy wizyt"
+        android:label="Lista lekarzy"
         tools:layout="@layout/p_fragment_home" />
 
     <fragment

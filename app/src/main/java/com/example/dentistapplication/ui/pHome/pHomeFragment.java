@@ -69,7 +69,7 @@ public class pHomeFragment extends Fragment {
         getAllDoctors();
 
         //wyświetlanie menu po prawej stronie
-       // setHasOptionsMenu(true);
+       setHasOptionsMenu(true);
 
         return root;
     }
@@ -79,7 +79,7 @@ public class pHomeFragment extends Fragment {
     //dodanie menu po prawej stronie w górnym rogu
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.p_right_menu, menu);
+        inflater.inflate(R.menu.search_menu, menu);
 
         //searhc view
         MenuItem item= menu.findItem(R.id.action_search);
@@ -148,19 +148,6 @@ public class pHomeFragment extends Fragment {
             }
         });
 
-    }
-
-    //funkcja umożliwiająca wybranie z prawego górnego rogu opcję 'Wyloguj się' albo wyszukuj
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        int id = item.getItemId();
-        if (id==R.id.action_logout){
-            //wylogowanie użytkownika
-            FirebaseAuth.getInstance().signOut();
-            //uruchomienie ekranu logowania użytkownika
-            startActivity(new Intent(getActivity(), LoginActivity.class));
-        }
-        return super.onOptionsItemSelected(item);
     }
 
     private void getAllDoctors() {
