@@ -32,7 +32,7 @@ public class d_ModelVisits {
 
     public String getUidPatient() { return uidPatient;}
 
-    public void setUidPatinet(String uidPatient) {
+    public void setUidPatient(String uidPatient) {
         this.uidPatient = uidPatient;
     }
 

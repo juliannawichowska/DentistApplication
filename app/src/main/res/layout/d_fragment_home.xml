@@ -12,24 +12,12 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/my_calendar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:text="@string/p_freetime_list"
-            android:textAlignment="center"
-            android:textColor="@color/colorWhite"
-            android:textSize="22sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginTop="17dp"
             android:text="Kliknij w wizytę, aby wysłać wiadomość SMS z przypomnieniem"
             android:textColor="@color/colorWhite"
-            android:textSize="17sp"
+            android:textSize="18dp"
             android:textAlignment="center"
             android:gravity="center_horizontal"
             android:layout_marginLeft="10dp"

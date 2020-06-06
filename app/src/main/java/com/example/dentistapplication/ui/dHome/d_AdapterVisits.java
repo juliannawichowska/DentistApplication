@@ -4,6 +4,8 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.net.Uri;
 import android.telephony.SmsManager;
 import android.util.Log;
@@ -16,6 +18,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.core.widget.CompoundButtonCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dentistapplication.R;
@@ -29,6 +32,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.database.snapshot.CompoundHash;
 
 import java.util.List;
 
@@ -38,6 +42,7 @@ import static com.firebase.ui.auth.AuthUI.getApplicationContext;
 public class d_AdapterVisits extends RecyclerView.Adapter<d_AdapterVisits.MyHolder> {
     private Context mcontext;
     List<com.example.dentistapplication.ui.dHome.d_ModelVisits> visitsList;
+
 
     public d_AdapterVisits(Context context, List<d_ModelVisits> visitsList) {
         this.mcontext = context;
@@ -55,7 +60,13 @@ public class d_AdapterVisits extends RecyclerView.Adapter<d_AdapterVisits.MyHold
     public MyHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         //wyświetlenie layoutu
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.d_visit_element, parent, false);
+        view.setBackgroundColor(mcontext.getResources().getColor(R.color.colorGreen));
+
+            view.setBackgroundColor(mcontext.getResources().getColor(R.color.colorGrey));
+
+
         return  new d_AdapterVisits.MyHolder(view);
+
     }
 
     @Override
@@ -67,38 +78,38 @@ public class d_AdapterVisits extends RecyclerView.Adapter<d_AdapterVisits.MyHold
         final String uidPatient = visitsList.get(i).getUidPatient();
 
 
+        myHolder.vDay.setText("Dzień : " + date);
+        myHolder.vHour.setText("Godzina : " + hour);
         Log.v("tak", "jestem tu");
 
         //inicjacja instancji FirebaseDatabase
         firebaseDatabase = FirebaseDatabase.getInstance();
 
-        databaseReference = firebaseDatabase.getReference("Doctors");
+        databaseReference = firebaseDatabase.getReference("Patients");
         //wyszukanie użytkownika po mailu
-        Query query = databaseReference.orderByChild("userUid").equalTo(uidPatient);
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+        Query query = databaseReference.orderByChild("patientUid").equalTo(uidPatient);
+        query.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    for (DataSnapshot ds : dataSnapshot.getChildren()) {
 
-                for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                    //zapisanie do zmiennych wartości z bazy danych
-                    myHolder.vDay.setText("Dzień : "+date);
-                    myHolder.vHour.setText("Godzina : "+hour);
-                    if(free.equals("false")){
-                        myHolder.mFree.setText("Wizyta zajeta");
-                        String vPatient1 = "Pacjent : " + ds.child("name").getValue() +" "+ ds.child("surname").getValue();
-                        myHolder.vPatient.setText(vPatient1);
-                        String vNumber1_p = "Numer telefonu : " + ds.child("number").getValue();
+                        if(free.equals("false")) {
 
-                        myHolder.vPatient.setText(vPatient1);
-                        myHolder.vNumber_p.setText(vNumber1_p);
+                            //zapisanie do zmiennych wartości z bazy danych
+                            myHolder.mFree.setText("Wizyta zajeta");
+                            String vPatient1 = "Pacjent : " + ds.child("name").getValue() + " " + ds.child("surname").getValue();
+                            String vNumber1_p = "Numer telefonu : " + ds.child("number").getValue();
+
+                            myHolder.vPatient.setText(vPatient1);
+                            myHolder.vNumber_p.setText(vNumber1_p);
+                            mcontext.getResources().getColor(R.color.colorGrey);
+                        }
                     }
                 }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-            }
-        });
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                }
+            });
 
         myHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -111,8 +122,8 @@ public class d_AdapterVisits extends RecyclerView.Adapter<d_AdapterVisits.MyHold
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                         for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                            //zapisanie do zmiennych wartości z bazy danych
 
+                            //zapisanie do zmiennych wartości z bazy danych
                             if(ds.getKey().equals(uidPatient)) {
                                 String Number = "" + ds.child("number").getValue();
                                 String message = "Przypomnienie o wizycie dnia : " + date + ", o godzinie " + hour;
@@ -133,23 +144,16 @@ public class d_AdapterVisits extends RecyclerView.Adapter<d_AdapterVisits.MyHold
                     }
                 });
 
-
-
             }
         });
     }
-
-
     @Override
     public int getItemCount() {
         return visitsList.size();
     }
 
     class MyHolder extends RecyclerView.ViewHolder {
-
         TextView vDay, vHour, mFree, vPatient, vNumber_p;
-
-
         public MyHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -159,6 +163,7 @@ public class d_AdapterVisits extends RecyclerView.Adapter<d_AdapterVisits.MyHold
             mFree = itemView.findViewById(R.id.is_free_d);
             vPatient = itemView.findViewById(R.id.patientV_d);
             vNumber_p = itemView.findViewById(R.id.number_d);
+
         }
 
     }

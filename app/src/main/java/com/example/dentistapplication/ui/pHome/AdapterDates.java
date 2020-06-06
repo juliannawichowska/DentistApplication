@@ -53,6 +53,7 @@ public class AdapterDates extends RecyclerView.Adapter<AdapterDates.MyHolder> {
 
             if(free.equals("false")){
                 myHolder.mFree.setText("Wizyta zajęta");
+                
             }
 
             //wyświetlenie profilu wybranego lekarza w momencie gdy zostanie kliknięty

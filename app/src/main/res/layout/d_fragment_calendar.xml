@@ -3,32 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:background="@color/colorMainAccent">
-
-        <TextView
-            android:id="@+id/my_calendar"
-            android:layout_width="396dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="25dp"
-            android:layout_marginTop="17dp"
-            android:gravity="center_horizontal"
-            android:text="@string/p_fragment_calendar"
-            android:textAlignment="center"
-            android:textColor="@color/colorWhite"
-            android:textSize="22sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-    </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="801dp"
+        android:layout_height="473dp"
         android:layout_alignParentBottom="true"
         android:layout_marginTop="60dp"
         android:layout_marginBottom="186dp"
@@ -73,8 +51,8 @@
 
         <Button
             android:id="@+id/btn_save"
-            android:layout_width="102dp"
-            android:layout_height="100dp"
+            android:layout_width="120dp"
+            android:layout_height="98dp"
             android:layout_below="@+id/btn_time"
             android:layout_alignStart="@+id/in_time"
             android:layout_alignLeft="@+id/in_time"
@@ -83,9 +61,9 @@
             android:layout_alignParentBottom="true"
             android:layout_marginStart="123dp"
             android:layout_marginLeft="123dp"
-            android:layout_marginTop="99dp"
-            android:layout_marginEnd="151dp"
-            android:layout_marginRight="151dp"
+            android:layout_marginTop="101dp"
+            android:layout_marginEnd="133dp"
+            android:layout_marginRight="133dp"
             android:layout_marginBottom="25dp"
             android:text="Zatwierdź" />
     </RelativeLayout>

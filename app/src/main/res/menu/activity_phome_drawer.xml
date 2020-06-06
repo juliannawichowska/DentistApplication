@@ -7,14 +7,11 @@
         <item
             android:id="@+id/p_nav_home"
             android:icon="@drawable/ic_home"
-            android:title="@string/home" />
+            android:title="@string/home_p" />
         <item
             android:id="@+id/p_nav_calendar"
             android:icon="@drawable/ic_calendar"
-            android:title="@string/calendar" />
-        <item
-            android:id="@+id/p_nav_tools"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="@string/settings" />
+            android:title="@string/calendar_p" />
+
     </group>
 </menu>

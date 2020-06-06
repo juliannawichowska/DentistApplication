@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/nav_home"
         android:name="com.example.dentistapplication.ui.dHome.dHomeFragment"
-        android:label="Pulpit"
+        android:label="Terminy wizyt"
         tools:layout="@layout/d_fragment_home" />
 
     <fragment
@@ -20,7 +20,7 @@
     <fragment
         android:id="@+id/nav_calendar"
         android:name="com.example.dentistapplication.ui.dCalendar.dCalendarFragment"
-        android:label="Kalendarz wizyt"
+        android:label="Podaj dyspozcyjność"
         tools:layout="@layout/d_fragment_calendar" />
 
     <fragment
