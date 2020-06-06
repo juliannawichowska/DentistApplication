@@ -2,10 +2,12 @@ package com.example.dentistapplication.ui.pHome;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -53,7 +55,8 @@ public class AdapterDates extends RecyclerView.Adapter<AdapterDates.MyHolder> {
 
             if(free.equals("false")){
                 myHolder.mFree.setText("Wizyta zajęta");
-                
+                 myHolder.itemView.setBackgroundColor(Color.GRAY);
+
             }
 
             //wyświetlenie profilu wybranego lekarza w momencie gdy zostanie kliknięty
@@ -70,6 +73,7 @@ public class AdapterDates extends RecyclerView.Adapter<AdapterDates.MyHolder> {
                         intent.putExtra("hour", hour);
                         intent.putExtra("uidDoctor", uidDoctor);
                         intent.putExtra("keyVisit", keyVisit);
+                        Toast.makeText(mcontext, "Wizyta zarezerwowana", Toast.LENGTH_LONG).show();
                         mcontext.startActivity(intent);
                     } else {
                         Context mcontext = v.getContext();
@@ -88,11 +92,12 @@ public class AdapterDates extends RecyclerView.Adapter<AdapterDates.MyHolder> {
     class MyHolder extends RecyclerView.ViewHolder {
 
         TextView mDay, mHour, mFree;
-
+        LinearLayout linearLayout;
         public MyHolder(@NonNull View itemView) {
             super(itemView);
 
             //inicjacja widoków
+            linearLayout = itemView.findViewById(R.id.p_linlay);
             mDay = itemView.findViewById(R.id.day);
             mHour = itemView.findViewById(R.id.hour);
             mFree = itemView.findViewById(R.id.is_free);

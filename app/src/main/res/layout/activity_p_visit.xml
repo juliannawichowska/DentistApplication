@@ -6,5 +6,28 @@
     android:layout_height="match_parent"
     android:id="@+id/container2"
     tools:context=".ui.pHome.pVisit">
+<LinearLayout
+android:layout_width="match_parent"
+android:layout_height="80dp"
+android:background="@color/colorMainAccent"
+android:orientation="vertical"
+    tools:ignore="MissingConstraints">
+
+<TextView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="17dp"
+    android:text="Moje wizyty"
+    android:textColor="@color/colorWhite"
+    android:textSize="18dp"
+    android:textAlignment="center"
+    android:gravity="center_horizontal"
+    android:layout_marginLeft="10dp"
+    android:layout_marginStart="10dp"
+    android:layout_marginRight="10dp"
+    android:layout_marginEnd="10dp">
+
+</TextView>
+</LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

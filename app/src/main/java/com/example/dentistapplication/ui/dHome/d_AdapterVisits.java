@@ -12,6 +12,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -62,9 +64,6 @@ public class d_AdapterVisits extends RecyclerView.Adapter<d_AdapterVisits.MyHold
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.d_visit_element, parent, false);
         view.setBackgroundColor(mcontext.getResources().getColor(R.color.colorGreen));
 
-            view.setBackgroundColor(mcontext.getResources().getColor(R.color.colorGrey));
-
-
         return  new d_AdapterVisits.MyHolder(view);
 
     }
@@ -87,25 +86,27 @@ public class d_AdapterVisits extends RecyclerView.Adapter<d_AdapterVisits.MyHold
 
         databaseReference = firebaseDatabase.getReference("Patients");
         //wyszukanie użytkownika po mailu
-        Query query = databaseReference.orderByChild("patientUid").equalTo(uidPatient);
-        query.addValueEventListener(new ValueEventListener() {
+
+            //d_ModelVisits.setBackgroundColor(mcontext.getResources().getColor(R.color.colorGreen));
+            Query query = databaseReference.orderByChild("patientUid").equalTo(uidPatient);
+            query.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     for (DataSnapshot ds : dataSnapshot.getChildren()) {
-
                         if(free.equals("false")) {
-
                             //zapisanie do zmiennych wartości z bazy danych
                             myHolder.mFree.setText("Wizyta zajeta");
                             String vPatient1 = "Pacjent : " + ds.child("name").getValue() + " " + ds.child("surname").getValue();
                             String vNumber1_p = "Numer telefonu : " + ds.child("number").getValue();
-
+                            myHolder.itemView.setBackgroundColor(mcontext.getResources().getColor(R.color.colorGrey));
                             myHolder.vPatient.setText(vPatient1);
                             myHolder.vNumber_p.setText(vNumber1_p);
                             mcontext.getResources().getColor(R.color.colorGrey);
+
                         }
                     }
                 }
+
                 @Override
                 public void onCancelled(@NonNull DatabaseError databaseError) {
                 }
@@ -154,10 +155,12 @@ public class d_AdapterVisits extends RecyclerView.Adapter<d_AdapterVisits.MyHold
 
     class MyHolder extends RecyclerView.ViewHolder {
         TextView vDay, vHour, mFree, vPatient, vNumber_p;
+        LinearLayout linearLayout;
         public MyHolder(@NonNull View itemView) {
             super(itemView);
 
             //inicjacja widoków
+           linearLayout = itemView.findViewById(R.id.row_lnrLayout);
             vDay = itemView.findViewById(R.id.dayV_d);
             vHour = itemView.findViewById(R.id.hourV_d);
             mFree = itemView.findViewById(R.id.is_free_d);

@@ -15,7 +15,7 @@
     <string name="chooseType">Wybierz jaką rolę chcesz pełnić w aplikacji :</string>
     <string name="patientType">Pacjent</string>
     <string name="doctorType">Stomatolog</string>
-    <string name="calendar_p">Lista wizyt</string>
+    <string name="calendar_p">Moje wizyty</string>
     <string name="calendar_d">Dyspozycyjność</string>
     <string name="profile">Twój profil</string>
     <string name="home_p">Lista lekarzy</string>

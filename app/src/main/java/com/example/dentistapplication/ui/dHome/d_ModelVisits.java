@@ -14,6 +14,9 @@ public class d_ModelVisits {
         this.free = free;
     }
 
+    public static void setBackgroundColor(int color) {
+    }
+
     public String getDate() {
         return date;
     }
