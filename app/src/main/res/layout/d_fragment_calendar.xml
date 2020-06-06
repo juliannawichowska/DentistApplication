@@ -6,10 +6,10 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="473dp"
+        android:layout_height="579dp"
         android:layout_alignParentBottom="true"
         android:layout_marginTop="60dp"
-        android:layout_marginBottom="215dp"
+        android:layout_marginBottom="20dp"
         android:background="@drawable/bg_calendar"
         android:orientation="vertical"
         android:padding="7dp">
@@ -29,19 +29,18 @@
         <TextView
             android:id="@+id/in_time"
             android:layout_width="179dp"
-            android:layout_height="wrap_content"
-
+            android:layout_height="34dp"
             android:layout_above="@+id/btn_time"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:layout_marginEnd="122dp"
-            android:layout_marginRight="122dp"
+            android:layout_marginEnd="119dp"
+            android:layout_marginRight="119dp"
             android:layout_marginBottom="1dp"
             android:textSize="18dp" />
 
         <Button
             android:id="@+id/btn_time"
-            android:layout_width="195dp"
+            android:layout_width="193dp"
             android:layout_height="wrap_content"
             android:layout_above="@+id/btn_save"
             android:layout_alignParentEnd="true"
@@ -51,22 +50,9 @@
             android:layout_marginBottom="40dp"
             android:text="@string/choose_time" />
 
-        <Button
-            android:id="@+id/btn_save"
-            android:layout_width="wrap_content"
-            android:layout_height="109dp"
-
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginEnd="162dp"
-            android:layout_marginRight="162dp"
-            android:layout_marginBottom="42dp"
-            android:text="Zatwierdź" />
-
         <TextView
             android:id="@+id/in_date"
-            android:layout_width="178dp"
+            android:layout_width="179dp"
             android:layout_height="34dp"
             android:layout_above="@+id/btn_date"
             android:layout_alignParentEnd="true"
@@ -78,6 +64,19 @@
             android:layout_marginRight="119dp"
             android:layout_marginBottom="2dp"
             android:textSize="18dp" />
+
+        <Button
+            android:id="@+id/btn_save"
+            android:layout_width="wrap_content"
+            android:layout_height="109dp"
+
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="171dp"
+            android:layout_marginRight="171dp"
+            android:layout_marginBottom="148dp"
+            android:text="Zatwierdź" />
     </RelativeLayout>
 
 </RelativeLayout>

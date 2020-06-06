@@ -1,31 +1,24 @@
 package com.example.dentistapplication.ui.dHome;
 
 import android.Manifest;
+import android.app.AlertDialog;
 import android.content.Context;
-import android.content.Intent;
+import android.content.DialogInterface;
 import android.content.pm.PackageManager;
-import android.content.res.ColorStateList;
-import android.graphics.Color;
-import android.net.Uri;
 import android.telephony.SmsManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-import androidx.core.widget.CompoundButtonCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dentistapplication.R;
-import com.example.dentistapplication.ui.dHome.d_ModelVisits;
-import com.example.dentistapplication.ui.pHome.pVisit;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -34,17 +27,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.database.snapshot.CompoundHash;
 
 import java.util.List;
-
-import static android.content.ContentValues.TAG;
-import static com.firebase.ui.auth.AuthUI.getApplicationContext;
 
 public class d_AdapterVisits extends RecyclerView.Adapter<d_AdapterVisits.MyHolder> {
     private Context mcontext;
     List<com.example.dentistapplication.ui.dHome.d_ModelVisits> visitsList;
-
 
     public d_AdapterVisits(Context context, List<d_ModelVisits> visitsList) {
         this.mcontext = context;
@@ -64,7 +52,7 @@ public class d_AdapterVisits extends RecyclerView.Adapter<d_AdapterVisits.MyHold
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.d_visit_element, parent, false);
         view.setBackgroundColor(mcontext.getResources().getColor(R.color.colorGreen));
 
-        return  new d_AdapterVisits.MyHolder(view);
+        return new d_AdapterVisits.MyHolder(view);
 
     }
 
@@ -87,30 +75,30 @@ public class d_AdapterVisits extends RecyclerView.Adapter<d_AdapterVisits.MyHold
         databaseReference = firebaseDatabase.getReference("Patients");
         //wyszukanie użytkownika po mailu
 
-            //d_ModelVisits.setBackgroundColor(mcontext.getResources().getColor(R.color.colorGreen));
-            Query query = databaseReference.orderByChild("patientUid").equalTo(uidPatient);
-            query.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                        if(free.equals("false")) {
-                            //zapisanie do zmiennych wartości z bazy danych
-                            myHolder.mFree.setText("Wizyta zajeta");
-                            String vPatient1 = "Pacjent : " + ds.child("name").getValue() + " " + ds.child("surname").getValue();
-                            String vNumber1_p = "Numer telefonu : " + ds.child("number").getValue();
-                            myHolder.itemView.setBackgroundColor(mcontext.getResources().getColor(R.color.colorGrey));
-                            myHolder.vPatient.setText(vPatient1);
-                            myHolder.vNumber_p.setText(vNumber1_p);
-                            mcontext.getResources().getColor(R.color.colorGrey);
+        //d_ModelVisits.setBackgroundColor(mcontext.getResources().getColor(R.color.colorGreen));
+        Query query = databaseReference.orderByChild("patientUid").equalTo(uidPatient);
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                    if (free.equals("false")) {
+                        //zapisanie do zmiennych wartości z bazy danych
+                        myHolder.mFree.setText("Wizyta zajeta");
+                        String vPatient1 = "Pacjent : " + ds.child("name").getValue() + " " + ds.child("surname").getValue();
+                        String vNumber1_p = "Numer telefonu : " + ds.child("number").getValue();
+                        myHolder.itemView.setBackgroundColor(mcontext.getResources().getColor(R.color.colorGrey));
+                        myHolder.vPatient.setText(vPatient1);
+                        myHolder.vNumber_p.setText(vNumber1_p);
+                        mcontext.getResources().getColor(R.color.colorGrey);
 
-                        }
                     }
                 }
+            }
 
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
-                }
-            });
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+        });
 
         myHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -119,23 +107,44 @@ public class d_AdapterVisits extends RecyclerView.Adapter<d_AdapterVisits.MyHold
                 databaseReference4 = firebaseDatabase.getReference("Patients");
                 //wyszukanie użytkownika po mailu
                 databaseReference4.addValueEventListener(new ValueEventListener() {
+
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                        for (DataSnapshot ds : dataSnapshot.getChildren()) {
+
+                        for (final DataSnapshot ds : dataSnapshot.getChildren()) {
 
                             //zapisanie do zmiennych wartości z bazy danych
-                            if(ds.getKey().equals(uidPatient)) {
-                                String Number = "" + ds.child("number").getValue();
-                                String message = "Przypomnienie o wizycie dnia : " + date + ", o godzinie " + hour;
+                            if (ds.getKey().equals(uidPatient)) {
 
-                                if (ContextCompat.checkSelfPermission(mcontext, Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED) {
-                                    SmsManager smsManager = SmsManager.getDefault();
-                                    smsManager.sendTextMessage(Number, null, message, null, null);
-                                    Toast.makeText(mcontext, "Powiadomienie o wizycie zostało wysłane!", Toast.LENGTH_LONG).show();
-                                } else {
-                                    Toast.makeText(mcontext, "Nie udzielono zgody na wysyłanie wiadomości sms", Toast.LENGTH_SHORT).show();
-                                }
+                                final DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        switch (which) {
+                                            case DialogInterface.BUTTON_POSITIVE:
+                                                String Number = "" + ds.child("number").getValue();
+                                                String message = "Przypomnienie o wizycie dnia : " + date + ", o godzinie " + hour;
+
+                                                if (ContextCompat.checkSelfPermission(mcontext, Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED) {
+                                                    SmsManager smsManager = SmsManager.getDefault();
+                                                    smsManager.sendTextMessage(Number, null, message, null, null);
+                                                    Toast.makeText(mcontext, "Powiadomienie o wizycie zostało wysłane!", Toast.LENGTH_LONG).show();
+                                                } else {
+                                                    Toast.makeText(mcontext, "Nie udzielono zgody na wysyłanie wiadomości sms", Toast.LENGTH_SHORT).show();
+                                                }
+                                                break;
+
+                                            case DialogInterface.BUTTON_NEGATIVE:
+                                                Toast.makeText(mcontext, "Nie udzielono zgody na wysyłanie wiadomości sms", Toast.LENGTH_SHORT).show();
+                                                dialog.dismiss();
+                                                break;
+                                        }
+                                    }
+                                };
+                                AlertDialog.Builder builder = new AlertDialog.Builder(mcontext);
+                                builder.setMessage("Na pewno chcesz wyslac SMS?").setPositiveButton("Tak", dialogClickListener)
+                                        .setNegativeButton("Anuluj", dialogClickListener).show();
+
                             }
                         }
                     }
@@ -148,19 +157,22 @@ public class d_AdapterVisits extends RecyclerView.Adapter<d_AdapterVisits.MyHold
             }
         });
     }
+
     @Override
     public int getItemCount() {
         return visitsList.size();
     }
 
+
     class MyHolder extends RecyclerView.ViewHolder {
         TextView vDay, vHour, mFree, vPatient, vNumber_p;
         LinearLayout linearLayout;
+
         public MyHolder(@NonNull View itemView) {
             super(itemView);
 
             //inicjacja widoków
-           linearLayout = itemView.findViewById(R.id.row_lnrLayout);
+            linearLayout = itemView.findViewById(R.id.row_lnrLayout);
             vDay = itemView.findViewById(R.id.dayV_d);
             vHour = itemView.findViewById(R.id.hourV_d);
             mFree = itemView.findViewById(R.id.is_free_d);
@@ -171,4 +183,3 @@ public class d_AdapterVisits extends RecyclerView.Adapter<d_AdapterVisits.MyHold
 
     }
 }
-
