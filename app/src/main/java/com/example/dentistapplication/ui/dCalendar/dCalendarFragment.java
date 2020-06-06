@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
-import android.widget.EditText;
+import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
@@ -34,7 +34,7 @@ import java.util.Map;
 public class dCalendarFragment extends Fragment implements View.OnClickListener {
 
     Button btnDatePicker, btnTimePicker, btnConfirm;
-    EditText txtDate, txtTime;
+    TextView txtDate, txtTime;
     private int mYear, mMonth, mDay, mHour, mMinute;
 
 
@@ -74,6 +74,7 @@ public class dCalendarFragment extends Fragment implements View.OnClickListener 
     }
     @Override
     public void onClick(View v) {
+
         if (v == btnDatePicker) {
 // Get Current Date
             final Calendar c = Calendar.getInstance();
@@ -109,45 +110,52 @@ public class dCalendarFragment extends Fragment implements View.OnClickListener 
             timePickerDialog.show();
 
         }
-        if (v == btnConfirm)
-        {
-            DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
-            //referencja do ścieżki do tabeli 'Users'
-            databaseReference = firebaseDatabase.getReference("Dates");
-            //zapisanie do zmiennej wprowadzonego adresu
-            String value1 = txtDate.getText().toString().trim() ;
-            String value2 = txtTime.getText().toString().trim() ;//+ txtTime.getText().toString().trim();
-            String free  = "true";
-            String uid = user.getUid();
-            String key = databaseReference.push().getKey();
-            String uidPatient = "";
-            //utworzenie HashMap z adresem gabinetu
-            Map<String, Object> result = new HashMap<>();
-            result.put("date", value1);
-            result.put("hour", value2);
-            result.put("free", free);
-            result.put("uid", uid);
-            result.put("key", key);
-            result.put("uidPatient", uidPatient);
 
-            //zaktualizowanie bazy danych o wolny termin
-            databaseReference.child(user.getUid()).child(key).setValue(result)
-                    .addOnSuccessListener(new OnSuccessListener<Void>() {
-                        @Override
-                        public void onSuccess(Void aVoid) {
-                            //zaktualizowano pomyślnie
-                            timePickerDialog.dismiss();
-                            Toast.makeText(getActivity(),"Zapisano..", Toast.LENGTH_SHORT).show();;
-                        }
-                    })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            //aktualizacja nie powiodła się
-                            timePickerDialog.dismiss();
-                            Toast.makeText(getActivity(),""+e.getMessage(), Toast.LENGTH_SHORT).show();
-                        }
-                    });
+        if (v == btnConfirm){
+            if (txtDate.getText().toString().matches("") || txtTime.getText().toString().matches("")){
+
+                    Toast.makeText(getActivity(),"Wybierz termin", Toast.LENGTH_SHORT).show();;
+                }
+            else {
+                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+                //referencja do ścieżki do tabeli 'Users'
+                databaseReference = firebaseDatabase.getReference("Dates");
+                //zapisanie do zmiennej wprowadzonego adresu
+                String value1 = txtDate.getText().toString().trim();
+                String value2 = txtTime.getText().toString().trim();//+ txtTime.getText().toString().trim();
+                String free = "true";
+                String uid = user.getUid();
+                String key = databaseReference.push().getKey();
+                String uidPatient = "";
+                //utworzenie HashMap z adresem gabinetu
+                Map<String, Object> result = new HashMap<>();
+                result.put("date", value1);
+                result.put("hour", value2);
+                result.put("free", free);
+                result.put("uid", uid);
+                result.put("key", key);
+                result.put("uidPatient", uidPatient);
+
+                //zaktualizowanie bazy danych o wolny termin
+                databaseReference.child(user.getUid()).child(key).setValue(result)
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                //zaktualizowano pomyślnie
+                                timePickerDialog.dismiss();
+                                Toast.makeText(getActivity(), "Zapisano..", Toast.LENGTH_SHORT).show();
+                                ;
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                //aktualizacja nie powiodła się
+                                timePickerDialog.dismiss();
+                                Toast.makeText(getActivity(), "" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                        });
+            }
         }
     }
 }
